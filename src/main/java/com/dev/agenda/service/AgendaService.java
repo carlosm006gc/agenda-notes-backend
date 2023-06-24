@@ -18,7 +18,7 @@ public class AgendaService {
 
     public Page<AgendaDocument> findAll(Pageable pageable, String flag){
         if (flag != null && flag.equals("next")){
-            return agendaRepository.findByAgendaDateBeforeOrderByAgendaDateDesc(LocalDateTime.now(), pageable);
+            return agendaRepository.findByAgendaDateAfterOrderByAgendaDateAsc(LocalDateTime.now(), pageable);
         } else if (flag != null && flag.equals("waiting")) {
             return agendaRepository.findByAgendaDateBeforeOrderByAgendaDateDesc(LocalDateTime.now(), pageable);
         }

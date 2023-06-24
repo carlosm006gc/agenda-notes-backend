@@ -3,13 +3,18 @@ package com.dev.agenda.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Document
-public class AgendaDocument {
+public class AgendaDocument implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
     private String id;
-    private String agendaName;
     private String title;
     private String agendaBody;
     private LocalDateTime agendaDate;
@@ -21,14 +26,6 @@ public class AgendaDocument {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getAgendaName() {
-        return agendaName;
-    }
-
-    public void setAgendaName(String agendaName) {
-        this.agendaName = agendaName;
     }
 
     public String getTitle() {
@@ -61,5 +58,18 @@ public class AgendaDocument {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AgendaDocument that = (AgendaDocument) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
