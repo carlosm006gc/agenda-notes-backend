@@ -11,6 +11,6 @@ FROM openjdk:18-jdk-slim
 
 EXPOSE 8080
 
-COPY --from=build /target/agenda-1.0.0.jar app.jar
+COPY --from=build /target/agenda-0.0.1-SNAPSHOT.jar agenda.jar
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
