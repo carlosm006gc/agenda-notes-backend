@@ -35,15 +35,15 @@ public class AgendaController {
     }
 
     @GetMapping("/notes/{id}")
-    public ResponseEntity<AgendaDocument> getOneNote(@PathVariable(value = "id") String id){
+    public ResponseEntity<AgendaDocument> getOneNote(@PathVariable(value = "id") String id) {
         Optional<AgendaDocument> noteOne = agendaService.findById(id);
-        if (noteOne.isEmpty()){
-            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
-            return  new ResponseEntity<AgendaDocument>(noteOne.get(), HttpStatus.OK);
+        if (noteOne.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(noteOne.get(), HttpStatus.OK);
         }
     }
+
 
     @PostMapping("/notes")
     public ResponseEntity<AgendaDocument> newNote(@RequestBody @Valid AgendaDocument agendaDocument){
